@@ -44,6 +44,7 @@ const Nav = styled.nav`
     height: 75px;
     background: #090b13;
     padding: 0.5rem 2.2rem;
+    overflow: hidden;
 `
 const Logo = styled.img`
     height: 80px;
