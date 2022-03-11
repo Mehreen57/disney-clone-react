@@ -6,27 +6,27 @@ const Header = () => {
     <Nav>
         <Logo src='/images/logo.svg' />
         <NavMenu>
-            <a href="">
+            <a href=" ">
                 <img src='/images/home-icon.svg' alt="home"/>
                 <span>home</span>
             </a>
-            <a href="">
+            <a href=" ">
                 <img src='/images/search-icon.svg' alt="search"/>
                 <span>search</span>
             </a>
-            <a href="">
+            <a href=" ">
                 <img src='/images/watchlist-icon.svg' alt="watchlist"/>
                 <span>watchlist</span>
             </a>
-            <a href="">
+            <a href=" ">
                 <img src='/images/original-icon.svg' alt="originals"/>
                 <span>originals</span>
             </a>
-            <a href="">
+            <a href=" ">
                 <img src='/images/movie-icon.svg' alt="movies"/>
                 <span>movies</span>
             </a>
-            <a href="">
+            <a href=" ">
                 <img src='/images/series-icon.svg' alt="series"/>
                 <span>series</span>
             </a>
@@ -43,11 +43,11 @@ const Nav = styled.nav`
     align-items: center;
     height: 75px;
     background: #090b13;
-    padding: 0.5rem 2.2rem;
+    padding: 0 36px;
     overflow: hidden;
 `
 const Logo = styled.img`
-    height: 80px;
+    width: 80px;
 `
 const NavMenu = styled.div`
     display: flex;
