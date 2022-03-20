@@ -1,36 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import db from '../firebase';
+import { collection, getDocs } from 'firebase/firestore';
+
 
  const Detail = () => {
+     const  { id } = useParams();
+     const [ movie, setMovie ] = useState({})
+
+    // render data on start of page load 
+     useEffect(()=>{
+       const getMovie = async (userInputId) => {
+           try{
+                const getMovieList = collection(db, "movies");
+                const querySnapshot = await getDocs(getMovieList);
+                querySnapshot.forEach((doc) => {
+                   if(doc.id === userInputId){
+                     setMovie(doc.data())
+                    }
+                })
+           }
+           catch(error){
+                alert(error.message)
+            }
+       }
+        getMovie(id);
+     }, [])
+     console.log("Movie is", movie);
+
   return (
     <Container>
         <Background>
-            <img src='https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg' alt="detail images"/>
+            <img src={movie.backgroundImg} alt={movie.title}/>
         </Background>
         <ImageTitle>
-            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" alt="detail images"/>
+            <img src={movie.titleImg} alt={movie.title}/>
         </ImageTitle>
         <Controls>
             <PlayButton>
-                <img src="/images/play-icon-black.png" alt="detail images"/>
+                <img src="/images/play-icon-black.png" alt={movie.title}/>
                 <span>Play</span>
             </PlayButton>
             <TrailerButton>
-            <img src="/images/play-icon-white.png" alt="detail images" />
+            <img src="/images/play-icon-white.png" alt={movie.title} />
                 <span>Trailer</span>
             </TrailerButton>
             <AddButton>
                 <span>+</span>
             </AddButton>
             <GroupWatchButton>
-                <img src="/images/group-icon.png" alt="detail images"/>
+                <img src="/images/group-icon.png" alt={movie.title}/>
             </GroupWatchButton>
         </Controls>
         <SubTitle>
-            2018 - 7m - Family, Fantasy, Kids, Animation
+            {movie.subTitle}
         </SubTitle>
         <Description>
-            A Chinese-Canadian woman suffering from empty nest syndrome gets a second shot at motherhood when one of her handmade dumplings comes alive.
+        {movie.description}
         </Description>
     </Container>
   )
