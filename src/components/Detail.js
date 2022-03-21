@@ -27,7 +27,6 @@ import { collection, getDocs } from 'firebase/firestore';
        }
         getMovie(id);
      }, [])
-     console.log("Movie is", movie);
 
   return (
     <Container>
@@ -82,7 +81,6 @@ const Background = styled.div`
         object-fit: cover;
     }   
 `
-
 const ImageTitle = styled.div`
     height: 30vh;
     width: 35vw;
